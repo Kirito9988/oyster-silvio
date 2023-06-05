@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Site - How It Works</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #90ADBB;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 40px;
+            left: 200px;  /* adjust as needed */
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-right: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .navigation a.active {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-buttons {
+            position: absolute;
+            top: 40px;
+            right: 65px;  /* adjust as needed */
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-left: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .auth-buttons a[href="{% url 'login' %}"] {
+            background-color: #90ADBB;
+            box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-buttons a[href="{% url 'signup' %}"] {
+            background-color: white;
+            box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+
+    </style>
+</head>
+<body>
+    <img class="logo" src="{% static 'images/novella-high-resolution-logo-color-on-transparent-background.png' %}" alt="Logo">
+    <div class="navigation">
+        <a href="{% url 'home' %}">Overview</a>
+        <a href="{% url 'how_it_works' %}" class="active">How It Works</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'cost' %}">Cost</a>
+        <a href="{% url 'about' %}">About</a>
+
+    </div>
+    <!-- Add the specific content for "How It Works" page here -->
+    <div class="auth-buttons">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+
+</body>
+</html>

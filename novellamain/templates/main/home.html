@@ -1,0 +1,390 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Novella - Get More Customers</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #90ADBB;
+            color: white; /* Make text color white */
+            line-height: 1.2; /* Increase line height for readability */
+            display: block;
+            margin: auto;
+        }
+
+        .logo {
+            height: 80px;
+            width: auto;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 40px;
+            left: 200px;
+
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-right: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .navigation a.active {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-buttons {
+            position: absolute;
+            top: 40px;
+            right: 65px;  /* adjust as needed */
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-left: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .auth-buttons a[href="{% url 'login' %}"] {
+            background-color: #90ADBB;
+            box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-buttons a[href="{% url 'signup' %}"] {
+            background-color: white;
+            box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 150px; /* Provide some space at the top */
+        }
+     .content {
+    margin: auto;
+    max-width: 60%;
+    text-align: center;
+}
+        .content h1, .content p {
+            color: white;
+        }
+
+        .startNowButton {
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            display: inline-block;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .section {
+            margin-top: 200px; /* Add space between sections */
+        }
+
+
+        .imageContainer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px; /* adjust as necessary */
+            margin: auto;
+            padding: 30px 0;
+        }
+
+        .imageContainer img {
+            width: auto;
+            height: 100px; /* adjust as necessary */
+        }
+
+
+        .imgDescription {
+            text-align: center; /* center the text under each image */
+            width: 200px; /* adjust as necessary */
+            padding: 10px; /* add some padding around each description */
+        }
+
+        .imgDescription p {
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .boldText {
+            font-size: 15px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+
+        .novellaLogo {
+            max-width: 150px;  /* Adjust as needed to change the size of the logo */
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .novellaDescription {
+            width: 500px; /* Adjust as needed */
+            margin: 50px auto; /* Creates a gap above and below the text */
+            text-align: center;
+            font-size: 18px; /* Adjust as needed */
+            color: white;
+        }
+
+        .howItWorksButton {
+            display: block;
+            font-size: 20px;
+            width: 200px;  /* Adjust width as needed */
+            height: 30px;  /* Adjust height as needed */
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            text-align: center;
+            padding: 15px;
+            margin: 20px auto;  /* Center the button */
+            border-radius: 20px;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            flex-direction: column; /* add this line */
+            margin-bottom: 100px; /* Adjust for the space between sections */
+        }
+
+        .sectionContent {
+            width: 600px; /* Adjust this value to change the width of the section content */
+        }
+
+        h2 {
+            font-size: 2em; /* Make the title bigger, adjust as needed */
+        }
+
+
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 80%;
+            max-width: 300px;
+            background-color: white;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 10;
+            padding-top: 80px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .hamburger {
+            display: block;
+            width: 30px;
+            height: 22px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 30;
+            text-decoration: none;
+        }
+
+        .hamburger span {
+            display: block;
+            background-color: white;
+            height: 3px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+       .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 80%;
+            max-width: 300px;
+            background-color: white;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 10;
+            padding-top: 80px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-menu.show {
+            transform: translateX(0);
+        }
+
+        .hamburger {
+            display: none;
+            width: 30px;
+            height: 22px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 20;
+            text-decoration: none;
+        }
+
+        .hamburger span {
+            display: block;
+            background-color: white;
+            height: 3px;
+            margin: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        @media only screen and (max-width: 1150px) {
+            .hamburger {
+                display: block;
+            }
+            .navigation,
+            .auth-buttons {
+                display: none;
+            }
+            .nav-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="{% static 'images/novella-high-resolution-logo-color-on-transparent-background.png' %}" alt="Logo">
+
+
+
+
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <a href="{% url 'home' %}" class="active">Overview</a>
+        <a href="{% url 'how_it_works' %}">How It Works</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'cost' %}">Cost</a>
+        <a href="{% url 'about' %}">About</a>
+    </div>
+
+    <!-- Auth buttons -->
+    <div class="auth-buttons">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
+
+
+    <a href="#" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+
+
+    <!-- Slide-in navigation menu -->
+    <div class="nav-menu">
+        <a href="{% url 'home' %}">Overview</a>
+        <a href="{% url 'how_it_works' %}">How It Works</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'cost' %}">Cost</a>
+        <a href="{% url 'about' %}">About</a>
+        <hr>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h1>Welcome To The Future Of Transactions</h1>
+            <p>Where fees are a thing of the past. We're building an innovative payment provider powered by advertising revenue.</p>
+            <p>With our system, each transaction you make is fee-free, saving you more of your hard-earned money.</p>
+            <p>Our unique fusion of technology and advertising allows us to pass the savings onto you.</p>
+            <h3>This is just the beginning.</h3>
+            <p>Our vision is to leverage this foundation to revolutionize the banking industry,</p>
+            <p>Creating a more stable and reliable financial world.</p>
+            <p>Join us on this exciting journey as we reshape the way you pay.</p>
+            <a href="{% url 'start' %}" class="startNowButton">Start Now</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="sectionContent">
+            <h2>Get The Results That Matter To You</h2>
+        </div>
+    <div class="imageContainer">
+        <div class="imgDescription">
+            <img src="{% static 'images/website_icon.png' %}" alt="Website Icon">
+            <p><span class="boldText">DRIVE WEBSITE VISITS</span><br>
+               Grow online sales, bookings or mailing list signups with online ads that direct people to your website.
+            </p>
+        </div>
+        <div class="imgDescription">
+            <img src="{% static 'images/phone_icon.png' %}" alt="Phone Icon">
+            <p><span class="boldText">GET MORE PHONE CALLS</span><br>
+            Increase customer calls with ads that feature your phone number and a click-to-call button.
+            </p>
+        </div>
+        <div class="imgDescription">
+            <img src="{% static 'images/building_icon.png' %}" alt="Building Icon">
+            <p><span class="boldText">INCREASE STORE VISITS</span><br>
+               Get more customers in the door with business ads that help people find your company on the map.
+            </p>
+        </div>
+    </div>
+        <div class="section">
+            <div class="sectionContent">
+                <h2>Partner With Novella To Find The Right Customers & Enjoy Fee-Free Transactions</h2>
+                <img class="novellaLogo" src="{% static 'images/novella-high-resolution-logo-color-on-transparent-background.png' %}" alt="Novella Website">
+                <p class="novellaDescription">
+                    With our smart, easy ads, you can reach more relevant customers within your budget. Plus, we’ll help you improve your ads over time to get more of the results that matter to your business.
+                </p>
+                <a href="{% url 'how_it_works' %}" class="howItWorksButton">Learn How It Works</a>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/hamburger.js' %}"></script>
+
+    <!-- Add your jQuery code here -->
+     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Add your jQuery code here -->
+    <script>
+    $(document).ready(function(){
+        $('.hamburger').click(function(e){
+            e.preventDefault();
+            $('.nav-menu').toggleClass('show');
+        });
+    });
+    </script>
+
+</body>
+</html>
